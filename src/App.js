@@ -1,71 +1,42 @@
-import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LoanCalculator from "./LoanCalculator";
+import Privacy from "./pages/Privacy";
+import Contact from "./pages/Contact";
+import Terms from "./pages/Terms";
 
-export default function LoanCalculator() {
-  const [loanAmount, setLoanAmount] = useState(200000);
-  const [interestRate, setInterestRate] = useState(5);
-  const [loanTerm, setLoanTerm] = useState(30);
-  const [monthlyPayment, setMonthlyPayment] = useState(null);
-
-  const calculatePayment = () => {
-    const principal = parseFloat(loanAmount);
-    const annualInterest = parseFloat(interestRate) / 100;
-    const monthlyInterest = annualInterest / 12;
-    const numberOfPayments = parseInt(loanTerm) * 12;
-
-    if (monthlyInterest === 0) {
-      setMonthlyPayment((principal / numberOfPayments).toFixed(2));
-      return;
-    }
-
-    const payment =
-      (principal * monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) /
-      (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
-
-    setMonthlyPayment(payment.toFixed(2));
-  };
-
+export default function App() {
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
-      <h1 className="text-2xl font-bold mb-4 text-center">Loan/Mortgage Calculator</h1>
-      <div className="mb-4">
-        <label className="block mb-1">Loan Amount ($)</label>
-        <input
-          type="number"
-          value={loanAmount}
-          onChange={(e) => setLoanAmount(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <nav className="text-center p-4 bg-slate-100 rounded-b-xl">
+          <Link className="mx-3 text-blue-600 font-medium" to="/">
+            Home
+          </Link>
+          <Link className="mx-3 text-blue-600 font-medium" to="/privacy">
+            Privacy Policy
+          </Link>
+          <Link className="mx-3 text-blue-600 font-medium" to="/contact">
+            Contact
+          </Link>
+          <Link className="mx-3 text-blue-600 font-medium" to="/terms">
+            Terms
+          </Link>
+        </nav>
+
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<LoanCalculator />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/terms" element={<Terms />} />
+          </Routes>
+        </main>
+
+        <footer className="text-center text-sm p-4 bg-slate-100 rounded-t-xl">
+          © {new Date().getFullYear()} Loan Calculator by Romeo Dixon. All
+          rights reserved.
+        </footer>
       </div>
-      <div className="mb-4">
-        <label className="block mb-1">Annual Interest Rate (%)</label>
-        <input
-          type="number"
-          step="0.01"
-          value={interestRate}
-          onChange={(e) => setInterestRate(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-1">Loan Term (Years)</label>
-        <input
-          type="number"
-          value={loanTerm}
-          onChange={(e) => setLoanTerm(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
-      </div>
-      <button
-        onClick={calculatePayment}
-        className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
-      >
-        Calculate Payment
-      </button>
-      {monthlyPayment && (
-        <div className="mt-4 text-center text-xl">
-          Monthly Payment: <strong>${monthlyPayment}</strong>
-        </div>
-      )}
-    </div>
+    </Router>
   );
 }
