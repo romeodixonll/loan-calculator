@@ -28,14 +28,14 @@ export default function LoanCalculator() {
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-2xl shadow-xl mt-10">
-      <p className="text-sm text-gray-600 mt-4">
+      <h1 className="text-2xl font-bold mb-4 text-center">
+        Loan/Mortgage Calculator
+      </h1>
+      <p className="text-sm text-gray-600 mt-4 mb-3">
         Use this free loan and mortgage calculator to estimate your monthly
         payments, total interest, and payoff schedule. Great for personal loans,
         home mortgages, and more.
       </p>
-      <h1 className="text-2xl font-bold mb-4 text-center">
-        Loan/Mortgage Calculator
-      </h1>
       <div className="mb-4">
         <label className="block mb-1">Loan Amount ($)</label>
         <input

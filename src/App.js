@@ -31,6 +31,16 @@ export default function App() {
             <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+          data-ad-slot="YYYYYYYYYY"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
         <footer className="text-center text-sm p-4 bg-slate-100 rounded-t-xl">
           © {new Date().getFullYear()} Loan Calculator by Loan Estimators. All
