@@ -33,7 +33,7 @@ export default function App() {
         </main>
 
         <footer className="text-center text-sm p-4 bg-slate-100 rounded-t-xl">
-          © {new Date().getFullYear()} Loan Calculator by Romeo Dixon. All
+          © {new Date().getFullYear()} Loan Calculator by Loan Estimators. All
           rights reserved.
         </footer>
       </div>
